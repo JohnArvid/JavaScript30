@@ -19,7 +19,7 @@
 
   <style>
     html {
-      background: #018DED url(https://unsplash.it/1500/1000?image=881&blur=5);
+      background: #171a1d;
       background-size: cover;
       font-family: 'helvetica neue';
       text-align: center;
@@ -60,15 +60,48 @@
     .hand {
       width: 50%;
       height: 6px;
-      background: black;
+      background: rgb(230, 226, 226);
       position: absolute;
       top: 50%;
+      /*Defaults to 50%, 100 makes it pivot from the rightmost point*/
+      transform-origin: 100%;
+      /*How fast it transitions*/
+      transition: all 0.05s;
+      /*Rotate to startingpoint at 12 oclock*/
+      transform: rotate(90deg);
+      /*fun timing function, makes it go over endpoint and then tick back*/
+      transition-timing-function: cubic-bezier(0.19, 2.5, 0.22, 1);
+    }
+
+    .hour-hand {
+      margin-left: 10%;
+      width: 40%;
+      height: 9px;
+    }
+
+    .second-hand {
+      height: 4px;
     }
 
   </style>
 
   <script>
+    let secondHand = document.querySelector(".second-hand");
+    let minuteHand = document.querySelector(".min-hand");
+    let hourHand = document.querySelector(".hour-hand");
 
+    function tickClock() {
+      let now = new Date();
+      let seconds = now.getSeconds();
+      let minutes = now.getMinutes();
+      let hours = now.getHours();
+      secondHand.style.transform = `rotate(${((seconds/60) * 360) + 90}deg)`;
+      minuteHand.style.transform = `rotate(${((minutes/60) * 360) + 90}deg)`;
+      hourHand.style.transform = `rotate(${((hours/12) * 360) + 90}deg)`;
+      
+      
+    }
+    setInterval(tickClock, 1000)
 
   </script>
 </body>
