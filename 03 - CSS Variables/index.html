@@ -22,7 +22,7 @@
   <img width=500 src="https://images.unsplash.com/photo-1735325332407-73571ee7477b?q=80&w=1489&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
 
   <style>
-    /* CSS-variables declarede on the :root pseudo-element
+    /* CSS-variables declared on the :root pseudo-element
     ** Always start with --
     */
     :root {
@@ -69,17 +69,18 @@
     /* Changehandler function*/
     function handleChange(e) {
       /* dataset is an object with all data-properties specified as html-attributes 
-       *  if i have an attribute called data-color 
-       *  I can access it as dataset.color     
+       * if i have an attribute called data-color 
+       * I can access it as dataset.color     
       */
       let suffix = this.dataset.sizing || "";
       /* document.documentElement lets you access the documentelement itself
-      * in this case to write inline css-variables
+      *  in this case to write inline css-variables
       */
       document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix)
     }
+    /* Add change eventListeners on inputs */
     inputs.forEach(input=> input.addEventListener("change", handleChange));
-    /* Not really necessary but makes it update as you move the sliders on blur and spacing */
+    /* this one is not really necessary but makes css-variables update as you move the sliders on blur and spacing */
     inputs.forEach(input=> input.addEventListener("mousemove", handleChange));
 
   </script>
